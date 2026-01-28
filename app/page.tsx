@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react"
+import React from "react";
+
 
 import { motion } from "framer-motion";
-import { Shield, Zap, Network } from "lucide-react";
+import { Shield, Zap, Network, Globe, Layers, ShieldCheck, Landmark, RefreshCw, FileCheck, Key, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Animation variants
@@ -182,7 +183,7 @@ function HeroSection() {
           <Button
             variant="ghost"
             size="lg"
-            className="border border-white/10 bg-transparent text-white hover:bg-white/5 hover:text-white"
+            className="border border-white/[0.08] bg-transparent text-white hover:bg-white/5 hover:text-white"
           >
             Read Whitepaper
           </Button>
@@ -275,11 +276,123 @@ function FeatureCard({
   );
 }
 
-// Features Grid Component
-function FeaturesGrid() {
+// Value Props Visual Section
+function ValuePropsSection() {
+  const props = [
+    {
+      title: "Reserve Backed",
+      description: "CCUSD maintains full fiat backing, providing stability and institutional confidence.",
+      icon: (
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
+          <div className="absolute h-12 w-12 rounded-full border border-[#00E5FF]/20" />
+          <Shield className="h-8 w-8 text-[#00E5FF]" />
+        </div>
+      ),
+    },
+    {
+      title: "1:1 USD Convertible",
+      description: "Every CCUSD token can be exchanged for one US dollar, guaranteeing consistent value.",
+      icon: (
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
+          <div className="flex">
+            <div className="h-8 w-8 rounded-full border border-white/40 bg-white/[0.02]" />
+            <div className="-ml-3 h-8 w-8 rounded-full border border-[#00E5FF]/60 bg-[#00E5FF]/10" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Ecosystem Native",
+      description: "Empowering the Canton ecosystem with open-source tools and developer resources.",
+      icon: (
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
+          <div className="flex items-center gap-0.5">
+            <div className="h-5 w-5 rounded-full border border-white/40 bg-white/[0.02]" />
+            <div className="-mt-5 h-5 w-5 rounded-full border border-[#00E5FF]/60 bg-[#00E5FF]/10" />
+            <div className="h-5 w-5 rounded-full border border-white/40 bg-white/[0.02]" />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <section className="relative z-10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {props.map((prop, index) => (
+            <motion.div
+              key={prop.title}
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group flex flex-col items-center rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center shadow-xl shadow-black/30 backdrop-blur-xl transition-all hover:border-[#00E5FF]/20 hover:bg-white/[0.04]"
+            >
+              <div className="mb-6">{prop.icon}</div>
+              <h3 className="mb-3 text-xl font-bold text-white">{prop.title}</h3>
+              <p className="text-slate-400">{prop.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Why Choose Section
+function WhyChooseSection() {
+  const features = [
+    {
+      icon: <Globe className="h-5 w-5" />,
+      title: "Cross-Chain Architecture",
+      description: "Engineered as a multi-network stablecoin to seamlessly integrate with expanding blockchains and protocols, driving ecosystem advancement.",
+    },
+    {
+      icon: <Layers className="h-5 w-5" />,
+      title: "Ecosystem Integration",
+      description: "Works natively with leading wallets and decentralized platforms, enabling frictionless transactions across the digital asset landscape.",
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      title: "Verified Smart Contracts",
+      description: "Independent security audits validate our contract code, ensuring adherence to industry standards and building lasting confidence.",
+    },
+    {
+      icon: <Landmark className="h-5 w-5" />,
+      title: "Transparent Reserve Custody",
+      description: "Professional reserve administration with regular third-party verifications ensures full regulatory compliance and asset backing.",
+    },
+    {
+      icon: <RefreshCw className="h-5 w-5" />,
+      title: "Unified Token Supply",
+      description: "Tokens flow freely between networks without supply fragmentation, maintaining complete fiat backing at all times.",
+    },
+    {
+      icon: <FileCheck className="h-5 w-5" />,
+      title: "Regulatory-Ready Contracts",
+      description: "Smart contracts built to meet evolving compliance frameworks, with automatic updates to satisfy regulatory requirements.",
+    },
+    {
+      icon: <Key className="h-5 w-5" />,
+      title: "Enterprise-Grade Signing",
+      description: "Advanced multi-party computation infrastructure enables high-throughput minting and redemption across multiple networks.",
+    },
+    {
+      icon: <Sparkles className="h-5 w-5" />,
+      title: "Gasless Transactions",
+      description: "Removes friction by covering network fees through sponsored transactions, simplifying adoption on major blockchain platforms.",
+    },
+  ];
+
+  return (
+    <section className="relative z-10 px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        {/* Section header matching FeaturesGrid style */}
         <motion.div
           variants={fadeInUp}
           initial="initial"
@@ -289,34 +402,38 @@ function FeaturesGrid() {
           className="mb-12 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-            Built for Institutions
+            Why choose CCUSD?
           </h2>
           <p className="mx-auto max-w-2xl text-slate-400">
-            Enterprise-grade infrastructure designed for compliant, secure, and
-            efficient settlement.
+            Institutional-grade infrastructure with compliance, security, and scalability at its core.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard
-            icon={<Shield className="h-6 w-6" />}
-            title="Privacy First."
-            description="GDPR-compliant settlement for institutional flows. Your transactions remain confidential while meeting regulatory requirements."
-            className="md:col-span-2 lg:col-span-1 lg:row-span-2"
-            delay={0.1}
-          />
-          <FeatureCard
-            icon={<Zap className="h-6 w-6" />}
-            title="Atomic Speed."
-            description="Sub-second finality ensures your settlements complete instantly with guaranteed execution."
-            delay={0.2}
-          />
-          <FeatureCard
-            icon={<Network className="h-6 w-6" />}
-            title="Interoperable."
-            description="Native integration with all Canton dApps and seamless cross-chain compatibility."
-            delay={0.3}
-          />
+        {/* Glass card container */}
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 shadow-xl shadow-black/30 backdrop-blur-xl md:p-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#00E5FF]/10 text-[#00E5FF] transition-colors group-hover:bg-[#00E5FF]/20">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-400">{feature.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -440,7 +557,8 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <TrustBar />
-      <FeaturesGrid />
+      <ValuePropsSection />
+      <WhyChooseSection />
       <ContactSection />
       <Footer />
     </main>
