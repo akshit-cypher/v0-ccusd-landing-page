@@ -330,10 +330,10 @@ function ValuePropsSection() {
       title: "Reserve Backed",
       description: "CCUSD maintains full fiat backing, providing stability and institutional confidence.",
       icon: (
-        <div className="relative flex h-24 w-24 items-center justify-center">
-          <div className="absolute h-20 w-20 rounded-full border-2 border-[#00E5FF]/30" />
-          <div className="absolute h-16 w-16 rounded-full border border-[#00E5FF]/20" />
-          <Shield className="h-10 w-10 text-[#00E5FF]" />
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
+          <div className="absolute h-12 w-12 rounded-full border border-[#00E5FF]/20" />
+          <Shield className="h-8 w-8 text-[#00E5FF]" />
         </div>
       ),
     },
@@ -341,11 +341,11 @@ function ValuePropsSection() {
       title: "1:1 USD Convertible",
       description: "Every CCUSD token can be exchanged for one US dollar, guaranteeing consistent value.",
       icon: (
-        <div className="relative flex h-24 w-24 items-center justify-center">
-          <div className="absolute h-20 w-20 animate-pulse rounded-full border-2 border-[#00E5FF]/40" />
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
           <div className="flex">
-            <div className="h-10 w-10 rounded-full border-2 border-white bg-[#0a0b0d]" />
-            <div className="-ml-4 h-10 w-10 rounded-full border-2 border-[#00E5FF] bg-[#0a0b0d]" />
+            <div className="h-8 w-8 rounded-full border border-white/40 bg-white/[0.02]" />
+            <div className="-ml-3 h-8 w-8 rounded-full border border-[#00E5FF]/60 bg-[#00E5FF]/10" />
           </div>
         </div>
       ),
@@ -354,12 +354,12 @@ function ValuePropsSection() {
       title: "Ecosystem Native",
       description: "Empowering the Canton ecosystem with open-source tools and developer resources.",
       icon: (
-        <div className="relative flex h-24 w-24 items-center justify-center">
-          <div className="absolute h-20 w-20 rounded-full border-2 border-[#00E5FF]/30" />
-          <div className="flex items-center gap-1">
-            <div className="h-6 w-6 rounded-full border-2 border-white/60 bg-[#0a0b0d]" />
-            <div className="-mt-6 h-6 w-6 rounded-full border-2 border-[#00E5FF] bg-[#0a0b0d]" />
-            <div className="h-6 w-6 rounded-full border-2 border-white/60 bg-[#0a0b0d]" />
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
+          <div className="flex items-center gap-0.5">
+            <div className="h-5 w-5 rounded-full border border-white/40 bg-white/[0.02]" />
+            <div className="-mt-5 h-5 w-5 rounded-full border border-[#00E5FF]/60 bg-[#00E5FF]/10" />
+            <div className="h-5 w-5 rounded-full border border-white/40 bg-white/[0.02]" />
           </div>
         </div>
       ),
@@ -369,7 +369,7 @@ function ValuePropsSection() {
   return (
     <section className="relative z-10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {props.map((prop, index) => (
             <motion.div
               key={prop.title}
@@ -378,7 +378,7 @@ function ValuePropsSection() {
               whileInView="animate"
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-center text-center"
+              className="group flex flex-col items-center rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center shadow-xl shadow-black/30 backdrop-blur-xl transition-all hover:border-[#00E5FF]/20 hover:bg-white/[0.04]"
             >
               <div className="mb-6">{prop.icon}</div>
               <h3 className="mb-3 text-xl font-bold text-white">{prop.title}</h3>
@@ -438,40 +438,49 @@ function WhyChooseSection() {
 
   return (
     <section className="relative z-10 px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl">
-        <motion.h2
+      <div className="mx-auto max-w-6xl">
+        {/* Section header matching FeaturesGrid style */}
+        <motion.div
           variants={fadeInUp}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center text-4xl font-bold italic text-white md:text-5xl"
+          className="mb-12 text-center"
         >
-          Why choose CCUSD?
-        </motion.h2>
+          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+            Why choose CCUSD?
+          </h2>
+          <p className="mx-auto max-w-2xl text-slate-400">
+            Institutional-grade infrastructure with compliance, security, and scalability at its core.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group"
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.05] text-[#00E5FF] transition-colors group-hover:bg-[#00E5FF]/10">
-                  {feature.icon}
+        {/* Glass card container */}
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 shadow-xl shadow-black/30 backdrop-blur-xl md:p-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#00E5FF]/10 text-[#00E5FF] transition-colors group-hover:bg-[#00E5FF]/20">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-400">{feature.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400">{feature.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
