@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react"
+import React from "react";
+
 
 import { motion } from "framer-motion";
 import { Shield, Zap, Network, Globe, Layers, ShieldCheck, Landmark, RefreshCw, FileCheck, Key, Sparkles } from "lucide-react";
@@ -182,7 +183,7 @@ function HeroSection() {
           <Button
             variant="ghost"
             size="lg"
-            className="border border-white/10 bg-transparent text-white hover:bg-white/5 hover:text-white"
+            className="border border-white/[0.08] bg-transparent text-white hover:bg-white/5 hover:text-white"
           >
             Read Whitepaper
           </Button>
@@ -272,54 +273,6 @@ function FeatureCard({
       <h3 className="mb-2 text-xl font-bold text-white">{title}</h3>
       <p className="text-slate-400">{description}</p>
     </motion.div>
-  );
-}
-
-// Features Grid Component
-function FeaturesGrid() {
-  return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-            Built for Institutions
-          </h2>
-          <p className="mx-auto max-w-2xl text-slate-400">
-            Enterprise-grade infrastructure designed for compliant, secure, and
-            efficient settlement.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard
-            icon={<Shield className="h-6 w-6" />}
-            title="Privacy First."
-            description="GDPR-compliant settlement for institutional flows. Your transactions remain confidential while meeting regulatory requirements."
-            className="md:col-span-2 lg:col-span-1 lg:row-span-2"
-            delay={0.1}
-          />
-          <FeatureCard
-            icon={<Zap className="h-6 w-6" />}
-            title="Atomic Speed."
-            description="Sub-second finality ensures your settlements complete instantly with guaranteed execution."
-            delay={0.2}
-          />
-          <FeatureCard
-            icon={<Network className="h-6 w-6" />}
-            title="Interoperable."
-            description="Native integration with all Canton dApps and seamless cross-chain compatibility."
-            delay={0.3}
-          />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -604,7 +557,6 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <TrustBar />
-      <FeaturesGrid />
       <ValuePropsSection />
       <WhyChooseSection />
       <ContactSection />
