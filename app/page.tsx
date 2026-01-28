@@ -3,7 +3,7 @@
 import React from "react"
 
 import { motion } from "framer-motion";
-import { Shield, Zap, Network } from "lucide-react";
+import { Shield, Zap, Network, Globe, Layers, ShieldCheck, Landmark, RefreshCw, FileCheck, Key, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Animation variants
@@ -323,6 +323,161 @@ function FeaturesGrid() {
   );
 }
 
+// Value Props Visual Section
+function ValuePropsSection() {
+  const props = [
+    {
+      title: "Reserve Backed",
+      description: "CCUSD maintains full fiat backing, providing stability and institutional confidence.",
+      icon: (
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <div className="absolute h-20 w-20 rounded-full border-2 border-[#00E5FF]/30" />
+          <div className="absolute h-16 w-16 rounded-full border border-[#00E5FF]/20" />
+          <Shield className="h-10 w-10 text-[#00E5FF]" />
+        </div>
+      ),
+    },
+    {
+      title: "1:1 USD Convertible",
+      description: "Every CCUSD token can be exchanged for one US dollar, guaranteeing consistent value.",
+      icon: (
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <div className="absolute h-20 w-20 animate-pulse rounded-full border-2 border-[#00E5FF]/40" />
+          <div className="flex">
+            <div className="h-10 w-10 rounded-full border-2 border-white bg-[#0a0b0d]" />
+            <div className="-ml-4 h-10 w-10 rounded-full border-2 border-[#00E5FF] bg-[#0a0b0d]" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Ecosystem Native",
+      description: "Empowering the Canton ecosystem with open-source tools and developer resources.",
+      icon: (
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <div className="absolute h-20 w-20 rounded-full border-2 border-[#00E5FF]/30" />
+          <div className="flex items-center gap-1">
+            <div className="h-6 w-6 rounded-full border-2 border-white/60 bg-[#0a0b0d]" />
+            <div className="-mt-6 h-6 w-6 rounded-full border-2 border-[#00E5FF] bg-[#0a0b0d]" />
+            <div className="h-6 w-6 rounded-full border-2 border-white/60 bg-[#0a0b0d]" />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <section className="relative z-10 px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+          {props.map((prop, index) => (
+            <motion.div
+              key={prop.title}
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="flex flex-col items-center text-center"
+            >
+              <div className="mb-6">{prop.icon}</div>
+              <h3 className="mb-3 text-xl font-bold text-white">{prop.title}</h3>
+              <p className="text-slate-400">{prop.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Why Choose Section
+function WhyChooseSection() {
+  const features = [
+    {
+      icon: <Globe className="h-5 w-5" />,
+      title: "Cross-Chain Architecture",
+      description: "Engineered as a multi-network stablecoin to seamlessly integrate with expanding blockchains and protocols, driving ecosystem advancement.",
+    },
+    {
+      icon: <Layers className="h-5 w-5" />,
+      title: "Ecosystem Integration",
+      description: "Works natively with leading wallets and decentralized platforms, enabling frictionless transactions across the digital asset landscape.",
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      title: "Verified Smart Contracts",
+      description: "Independent security audits validate our contract code, ensuring adherence to industry standards and building lasting confidence.",
+    },
+    {
+      icon: <Landmark className="h-5 w-5" />,
+      title: "Transparent Reserve Custody",
+      description: "Professional reserve administration with regular third-party verifications ensures full regulatory compliance and asset backing.",
+    },
+    {
+      icon: <RefreshCw className="h-5 w-5" />,
+      title: "Unified Token Supply",
+      description: "Tokens flow freely between networks without supply fragmentation, maintaining complete fiat backing at all times.",
+    },
+    {
+      icon: <FileCheck className="h-5 w-5" />,
+      title: "Regulatory-Ready Contracts",
+      description: "Smart contracts built to meet evolving compliance frameworks, with automatic updates to satisfy regulatory requirements.",
+    },
+    {
+      icon: <Key className="h-5 w-5" />,
+      title: "Enterprise-Grade Signing",
+      description: "Advanced multi-party computation infrastructure enables high-throughput minting and redemption across multiple networks.",
+    },
+    {
+      icon: <Sparkles className="h-5 w-5" />,
+      title: "Gasless Transactions",
+      description: "Removes friction by covering network fees through sponsored transactions, simplifying adoption on major blockchain platforms.",
+    },
+  ];
+
+  return (
+    <section className="relative z-10 px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-5xl">
+        <motion.h2
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center text-4xl font-bold italic text-white md:text-5xl"
+        >
+          Why choose CCUSD?
+        </motion.h2>
+
+        <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              className="group"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.05] text-[#00E5FF] transition-colors group-hover:bg-[#00E5FF]/10">
+                  {feature.icon}
+                </div>
+                <div>
+                  <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-400">{feature.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Contact Form Component
 function ContactSection() {
   return (
@@ -441,6 +596,8 @@ export default function Home() {
       <HeroSection />
       <TrustBar />
       <FeaturesGrid />
+      <ValuePropsSection />
+      <WhyChooseSection />
       <ContactSection />
       <Footer />
     </main>
