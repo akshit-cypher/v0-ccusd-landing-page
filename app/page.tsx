@@ -15,6 +15,13 @@ const fadeInUp = {
 
 // Navigation Component
 function Navigation() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -10 }}
@@ -23,7 +30,10 @@ function Navigation() {
       className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#0a0b0d]/90 backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2">
+        <button 
+          onClick={() => scrollToSection("hero")}
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+        >
           <img
             src="/images/icon-dark.png"
             alt="CCUSD"
@@ -32,32 +42,32 @@ function Navigation() {
           <span className="text-xl font-bold tracking-tight text-white">
             CCUSD
           </span>
-        </div>
+        </button>
         <div className="hidden items-center gap-8 md:flex">
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+          <button
+            onClick={() => scrollToSection("features")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Developers
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+            Features
+          </button>
+          <button
+            onClick={() => scrollToSection("why-choose")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Transparency
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+            Why Choose
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Institutional
-          </a>
-          <Button
-            variant="outline"
-            className="border-[#00E5FF] bg-transparent text-[#00E5FF] hover:bg-[#00E5FF]/10 hover:text-[#00E5FF]"
+            About
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="rounded-lg border border-[#00E5FF]/60 bg-transparent px-4 py-2 text-sm font-medium text-[#00E5FF] transition-all hover:bg-[#00E5FF]/10 hover:border-[#00E5FF]"
           >
-            Mint CCUSD
-          </Button>
+            Contact Us
+          </button>
         </div>
       </div>
     </motion.nav>
@@ -67,7 +77,7 @@ function Navigation() {
 // Hero Section Component
 function HeroSection() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
+    <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
       {/* Glowing pulse effect behind coin */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="absolute h-64 w-64 animate-pulse rounded-full bg-[#00E5FF]/20 blur-3xl md:h-96 md:w-96" />
@@ -165,27 +175,19 @@ function HeroSection() {
         className="relative z-10 text-center"
       >
         <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-7xl">
-          <span className="text-balance">Liquidity, Synchronized.</span>
+          <span className="text-balance">Stable, Transparent, Native.</span>
         </h1>
         <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-300 md:text-xl">
-          The first native settlement layer for the Canton Network. Atomic
-          privacy. Instant finality.
+          CCUSD is a 1:1 fiat-backed stablecoin by OpenVector, designed for seamless liquidity provisioning across all products in the Canton ecosystem.
         </p>
 
-        {/* CTA Buttons */}
+        {/* CTA Button */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
             size="lg"
-            className="bg-white px-8 text-[#0a0b0d] hover:bg-white/90"
+            className="px-10 py-6 text-base bg-white text-[#0a0b0d] font-semibold hover:bg-white/90 transition-all rounded-lg"
           >
             Get Started
-          </Button>
-          <Button
-            variant="ghost"
-            size="lg"
-            className="border border-white/[0.08] bg-transparent text-white hover:bg-white/5 hover:text-white"
-          >
-            Read Whitepaper
           </Button>
         </div>
       </motion.div>
@@ -193,10 +195,11 @@ function HeroSection() {
   );
 }
 
-// Trust Bar Component
-function TrustBar() {
+// OpenVector Section Component
+function OpenVectorSection() {
   return (
-    <motion.div
+    <motion.section
+      id="about"
       variants={fadeInUp}
       initial="initial"
       animate="animate"
@@ -204,41 +207,19 @@ function TrustBar() {
       className="relative z-20 -mt-16 px-6"
     >
       <div className="mx-auto max-w-4xl rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-2xl shadow-black/50 backdrop-blur-xl md:p-8">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Total Supply
-            </p>
-            <p className="font-mono text-xl font-bold text-white md:text-2xl">
-              $50,000,000.00
-            </p>
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 inline-block rounded-full border border-[#00E5FF]/20 bg-[#00E5FF]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-[#00E5FF]">
+            Powered by OpenVector
           </div>
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Reserves
-            </p>
-            <p className="font-mono text-xl font-bold text-white md:text-2xl">
-              101% <span className="text-sm text-slate-400">(AUDITED)</span>
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Network
-            </p>
-            <p className="flex items-center justify-center gap-2 font-mono text-xl font-bold text-white md:text-2xl">
-              CANTON MAINNET
-              <span className="flex items-center gap-1.5 text-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-                </span>
-                <span className="text-green-400">LIVE</span>
-              </span>
-            </p>
-          </div>
+          <h3 className="mb-2 text-xl font-bold text-white md:text-2xl">
+            Built by OpenVector, an R&D Studio for AI & Blockchain
+          </h3>
+          <p className="mx-auto max-w-2xl text-slate-400">
+            CCUSD is a 1:1 fiat-backed stablecoin designed for seamless liquidity across the Canton ecosystem. Every token is CIP-56 compliant, fully backed by fiat reserves managed by Brale with third-party attestations.
+          </p>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }
 
@@ -278,10 +259,10 @@ function FeatureCard({
 
 // Value Props Visual Section
 function ValuePropsSection() {
-  const props = [
+  const props: any[] = [
     {
-      title: "Reserve Backed",
-      description: "CCUSD maintains full fiat backing, providing stability and institutional confidence.",
+      title: "Fiat-Backed Stability",
+      description: "Every CCUSD token is fully backed by fiat reserves, providing institutional-grade stability and trust.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -291,8 +272,8 @@ function ValuePropsSection() {
       ),
     },
     {
-      title: "1:1 USD Convertible",
-      description: "Every CCUSD token can be exchanged for one US dollar, guaranteeing consistent value.",
+      title: "CIP-56 Compliant",
+      description: "Meets the Canton Interoperability Protocol standards, ensuring seamless integration across the ecosystem.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -304,8 +285,8 @@ function ValuePropsSection() {
       ),
     },
     {
-      title: "Ecosystem Native",
-      description: "Empowering the Canton ecosystem with open-source tools and developer resources.",
+      title: "Verified Reserve Management",
+      description: "Brale provides automated reserve management with third-party attestations for US-regulated backing.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -320,7 +301,7 @@ function ValuePropsSection() {
   ];
 
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="features" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {props.map((prop, index) => (
@@ -348,49 +329,49 @@ function ValuePropsSection() {
 function WhyChooseSection() {
   const features = [
     {
-      icon: <Globe className="h-5 w-5" />,
-      title: "Cross-Chain Architecture",
-      description: "Engineered as a multi-network stablecoin to seamlessly integrate with expanding blockchains and protocols, driving ecosystem advancement.",
-    },
-    {
-      icon: <Layers className="h-5 w-5" />,
-      title: "Ecosystem Integration",
-      description: "Works natively with leading wallets and decentralized platforms, enabling frictionless transactions across the digital asset landscape.",
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      title: "Verified Smart Contracts",
-      description: "Independent security audits validate our contract code, ensuring adherence to industry standards and building lasting confidence.",
+      icon: <Shield className="h-5 w-5" />,
+      title: "Built by OpenVector",
+      description: "Created by OpenVector, an R&D studio building hardware & software solutions for the AI & Blockchain ecosystem.",
     },
     {
       icon: <Landmark className="h-5 w-5" />,
       title: "Transparent Reserve Custody",
-      description: "Professional reserve administration with regular third-party verifications ensures full regulatory compliance and asset backing.",
-    },
-    {
-      icon: <RefreshCw className="h-5 w-5" />,
-      title: "Unified Token Supply",
-      description: "Tokens flow freely between networks without supply fragmentation, maintaining complete fiat backing at all times.",
+      description: "Brale provides professional reserve administration with regular third-party verifications ensuring full regulatory compliance and US-regulated backing.",
     },
     {
       icon: <FileCheck className="h-5 w-5" />,
-      title: "Regulatory-Ready Contracts",
-      description: "Smart contracts built to meet evolving compliance frameworks, with automatic updates to satisfy regulatory requirements.",
+      title: "CIP-56 Compliance",
+      description: "Fully compliant with Canton Interoperability Protocol standards, ensuring seamless integration across Canton ecosystem products.",
+    },
+    {
+      icon: <Globe className="h-5 w-5" />,
+      title: "Ecosystem Native Integration",
+      description: "Works seamlessly with existing Canton ecosystem users including Zoro wallet, Trade.Fast, Cypherock and other financial applications.",
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      title: "Security & Audits",
+      description: "Independent security audits validate smart contracts, ensuring adherence to industry standards and building institutional confidence.",
+    },
+    {
+      icon: <RefreshCw className="h-5 w-5" />,
+      title: "Liquidity Provisioning",
+      description: "Designed for easy liquidity provisioning across all OpenVector products, enabling seamless transactions within the ecosystem.",
     },
     {
       icon: <Key className="h-5 w-5" />,
-      title: "Enterprise-Grade Signing",
-      description: "Advanced multi-party computation infrastructure enables high-throughput minting and redemption across multiple networks.",
+      title: "Enterprise-Grade Infrastructure",
+      description: "Advanced multi-party computation enables high-throughput minting and redemption with institutional-grade security.",
     },
     {
       icon: <Sparkles className="h-5 w-5" />,
-      title: "Gasless Transactions",
-      description: "Removes friction by covering network fees through sponsored transactions, simplifying adoption on major blockchain platforms.",
+      title: "Privacy-Preserving Design",
+      description: "Built with privacy considerations for the Canton Network's atomic privacy and instant finality features.",
     },
   ];
 
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="why-choose" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         {/* Section header matching FeaturesGrid style */}
         <motion.div
@@ -443,13 +424,13 @@ function WhyChooseSection() {
 // Contact Form Component
 function ContactSection() {
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="contact" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-[#0f1014] to-[#0a0b0d]">
           {/* Background glow effect */}
           <div className="absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[#00E5FF]/10 blur-3xl" />
           
-          <div className="relative grid grid-cols-1 gap-8 p-8 md:p-12 lg:grid-cols-2 lg:gap-16">
+          <div className="relative grid grid-cols-1 gap-10 p-6 sm:p-8 md:p-12 lg:grid-cols-2 lg:gap-16">
             {/* Left side - Text Content */}
             <div className="flex flex-col justify-center">
               <motion.div
@@ -463,12 +444,12 @@ function ContactSection() {
                   Get in Touch
                 </span>
                 <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
-                  Ready to integrate<br />with Canton?
+                  Ready to explore<br />CCUSD?
                 </h2>
                 <p className="mb-6 text-slate-400 leading-relaxed">
-                  Connect with our team to explore how CCUSD can power 
-                  your institutional settlement needs with privacy-preserving, 
-                  compliant infrastructure.
+                  Connect with our team to learn how CCUSD can provide 
+                  stable, compliant liquidity for your Canton ecosystem applications 
+                  with institutional-grade infrastructure backed by OpenVector.
                 </p>
                 <div className="flex items-center gap-4 text-sm text-slate-500">
                   <div className="flex items-center gap-2">
@@ -491,32 +472,32 @@ function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <form className="space-y-4">
+              <form className="space-y-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <input
                     type="text"
                     placeholder="Full name"
-                    className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                   <input
                     type="text"
                     placeholder="Company"
-                    className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                 </div>
                 <input
                   type="email"
                   placeholder="Business email"
-                  className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                  className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <textarea
                   placeholder="How can we help you?"
                   rows={4}
-                  className="w-full resize-none rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                  className="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <Button
                   type="submit"
-                  className="w-full bg-[#00E5FF] py-6 text-[#0a0b0d] font-semibold hover:bg-[#00E5FF]/90 transition-all"
+                  className="w-full bg-[#00E5FF] py-3.5 text-base text-[#0a0b0d] font-semibold hover:bg-[#00E5FF]/90 transition-all rounded-lg"
                 >
                   Request a Demo
                 </Button>
@@ -556,7 +537,7 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#0a0b0d]">
       <Navigation />
       <HeroSection />
-      <TrustBar />
+      <OpenVectorSection />
       <ValuePropsSection />
       <WhyChooseSection />
       <ContactSection />
