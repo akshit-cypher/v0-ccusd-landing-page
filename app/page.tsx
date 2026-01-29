@@ -15,6 +15,13 @@ const fadeInUp = {
 
 // Navigation Component
 function Navigation() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -10 }}
@@ -23,7 +30,10 @@ function Navigation() {
       className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#0a0b0d]/90 backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2">
+        <button 
+          onClick={() => scrollToSection("hero")}
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+        >
           <img
             src="/images/icon-dark.png"
             alt="CCUSD"
@@ -32,32 +42,32 @@ function Navigation() {
           <span className="text-xl font-bold tracking-tight text-white">
             CCUSD
           </span>
-        </div>
+        </button>
         <div className="hidden items-center gap-8 md:flex">
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+          <button
+            onClick={() => scrollToSection("features")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Developers
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+            Features
+          </button>
+          <button
+            onClick={() => scrollToSection("why-choose")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Transparency
-          </a>
-          <a
-            href="#"
-            className="text-sm text-slate-300 transition-colors hover:text-white"
+            Why Choose
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            Institutional
-          </a>
-          <Button
-            variant="outline"
-            className="border-[#00E5FF] bg-transparent text-[#00E5FF] hover:bg-[#00E5FF]/10 hover:text-[#00E5FF]"
+            About
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="rounded-lg border border-[#00E5FF]/60 bg-transparent px-4 py-2 text-sm font-medium text-[#00E5FF] transition-all hover:bg-[#00E5FF]/10 hover:border-[#00E5FF]"
           >
-            Mint CCUSD
-          </Button>
+            Contact Us
+          </button>
         </div>
       </div>
     </motion.nav>
@@ -67,7 +77,7 @@ function Navigation() {
 // Hero Section Component
 function HeroSection() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
+    <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
       {/* Glowing pulse effect behind coin */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="absolute h-64 w-64 animate-pulse rounded-full bg-[#00E5FF]/20 blur-3xl md:h-96 md:w-96" />
@@ -171,20 +181,13 @@ function HeroSection() {
           CCUSD is a 1:1 fiat-backed stablecoin by OpenVector, designed for seamless liquidity provisioning across all products in the Canton ecosystem.
         </p>
 
-        {/* CTA Buttons */}
+        {/* CTA Button */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
             size="lg"
-            className="bg-white px-8 text-[#0a0b0d] hover:bg-white/90"
+            className="px-10 py-6 text-base bg-white text-[#0a0b0d] font-semibold hover:bg-white/90 transition-all rounded-lg"
           >
             Get Started
-          </Button>
-          <Button
-            variant="ghost"
-            size="lg"
-            className="border border-white/[0.08] bg-transparent text-white hover:bg-white/5 hover:text-white"
-          >
-            Read Whitepaper
           </Button>
         </div>
       </motion.div>
@@ -196,6 +199,7 @@ function HeroSection() {
 function OpenVectorSection() {
   return (
     <motion.section
+      id="about"
       variants={fadeInUp}
       initial="initial"
       animate="animate"
@@ -255,7 +259,7 @@ function FeatureCard({
 
 // Value Props Visual Section
 function ValuePropsSection() {
-  const props = [
+  const props: any[] = [
     {
       title: "Fiat-Backed Stability",
       description: "Every CCUSD token is fully backed by fiat reserves, providing institutional-grade stability and trust.",
@@ -297,7 +301,7 @@ function ValuePropsSection() {
   ];
 
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="features" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {props.map((prop, index) => (
@@ -367,7 +371,7 @@ function WhyChooseSection() {
   ];
 
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="why-choose" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         {/* Section header matching FeaturesGrid style */}
         <motion.div
@@ -420,13 +424,13 @@ function WhyChooseSection() {
 // Contact Form Component
 function ContactSection() {
   return (
-    <section className="relative z-10 px-6 py-24 md:py-32">
+    <section id="contact" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-[#0f1014] to-[#0a0b0d]">
           {/* Background glow effect */}
           <div className="absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[#00E5FF]/10 blur-3xl" />
           
-          <div className="relative grid grid-cols-1 gap-8 p-8 md:p-12 lg:grid-cols-2 lg:gap-16">
+          <div className="relative grid grid-cols-1 gap-10 p-6 sm:p-8 md:p-12 lg:grid-cols-2 lg:gap-16">
             {/* Left side - Text Content */}
             <div className="flex flex-col justify-center">
               <motion.div
@@ -468,32 +472,32 @@ function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <form className="space-y-4">
+              <form className="space-y-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <input
                     type="text"
                     placeholder="Full name"
-                    className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                   <input
                     type="text"
                     placeholder="Company"
-                    className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                 </div>
                 <input
                   type="email"
                   placeholder="Business email"
-                  className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                  className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <textarea
                   placeholder="How can we help you?"
                   rows={4}
-                  className="w-full resize-none rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/40 focus:bg-white/[0.05]"
+                  className="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <Button
                   type="submit"
-                  className="w-full bg-[#00E5FF] py-6 text-[#0a0b0d] font-semibold hover:bg-[#00E5FF]/90 transition-all"
+                  className="w-full bg-[#00E5FF] py-3.5 text-base text-[#0a0b0d] font-semibold hover:bg-[#00E5FF]/90 transition-all rounded-lg"
                 >
                   Request a Demo
                 </Button>
