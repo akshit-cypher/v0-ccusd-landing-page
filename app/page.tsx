@@ -165,11 +165,10 @@ function HeroSection() {
         className="relative z-10 text-center"
       >
         <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-7xl">
-          <span className="text-balance">Liquidity, Synchronized.</span>
+          <span className="text-balance">Stable, Transparent, Native.</span>
         </h1>
         <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-300 md:text-xl">
-          The first native settlement layer for the Canton Network. Atomic
-          privacy. Instant finality.
+          CCUSD is a 1:1 fiat-backed stablecoin by OpenVector, designed for seamless liquidity provisioning across all products in the Canton ecosystem.
         </p>
 
         {/* CTA Buttons */}
@@ -193,10 +192,10 @@ function HeroSection() {
   );
 }
 
-// Trust Bar Component
-function TrustBar() {
+// OpenVector Section Component
+function OpenVectorSection() {
   return (
-    <motion.div
+    <motion.section
       variants={fadeInUp}
       initial="initial"
       animate="animate"
@@ -204,41 +203,19 @@ function TrustBar() {
       className="relative z-20 -mt-16 px-6"
     >
       <div className="mx-auto max-w-4xl rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-2xl shadow-black/50 backdrop-blur-xl md:p-8">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Total Supply
-            </p>
-            <p className="font-mono text-xl font-bold text-white md:text-2xl">
-              $50,000,000.00
-            </p>
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 inline-block rounded-full border border-[#00E5FF]/20 bg-[#00E5FF]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-[#00E5FF]">
+            Powered by OpenVector
           </div>
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Reserves
-            </p>
-            <p className="font-mono text-xl font-bold text-white md:text-2xl">
-              101% <span className="text-sm text-slate-400">(AUDITED)</span>
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="mb-1 text-xs uppercase tracking-widest text-slate-400">
-              Network
-            </p>
-            <p className="flex items-center justify-center gap-2 font-mono text-xl font-bold text-white md:text-2xl">
-              CANTON MAINNET
-              <span className="flex items-center gap-1.5 text-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-                </span>
-                <span className="text-green-400">LIVE</span>
-              </span>
-            </p>
-          </div>
+          <h3 className="mb-2 text-xl font-bold text-white md:text-2xl">
+            Built by OpenVector, an R&D Studio for AI & Blockchain
+          </h3>
+          <p className="mx-auto max-w-2xl text-slate-400">
+            CCUSD is a 1:1 fiat-backed stablecoin designed for seamless liquidity across the Canton ecosystem. Every token is CIP-56 compliant, fully backed by fiat reserves managed by Brale with third-party attestations.
+          </p>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }
 
@@ -280,8 +257,8 @@ function FeatureCard({
 function ValuePropsSection() {
   const props = [
     {
-      title: "Reserve Backed",
-      description: "CCUSD maintains full fiat backing, providing stability and institutional confidence.",
+      title: "Fiat-Backed Stability",
+      description: "Every CCUSD token is fully backed by fiat reserves, providing institutional-grade stability and trust.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -291,8 +268,8 @@ function ValuePropsSection() {
       ),
     },
     {
-      title: "1:1 USD Convertible",
-      description: "Every CCUSD token can be exchanged for one US dollar, guaranteeing consistent value.",
+      title: "CIP-56 Compliant",
+      description: "Meets the Canton Interoperability Protocol standards, ensuring seamless integration across the ecosystem.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -304,8 +281,8 @@ function ValuePropsSection() {
       ),
     },
     {
-      title: "Ecosystem Native",
-      description: "Empowering the Canton ecosystem with open-source tools and developer resources.",
+      title: "Verified Reserve Management",
+      description: "Brale provides automated reserve management with third-party attestations for US-regulated backing.",
       icon: (
         <div className="relative flex h-20 w-20 items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border border-white/[0.08]" />
@@ -348,44 +325,44 @@ function ValuePropsSection() {
 function WhyChooseSection() {
   const features = [
     {
-      icon: <Globe className="h-5 w-5" />,
-      title: "Cross-Chain Architecture",
-      description: "Engineered as a multi-network stablecoin to seamlessly integrate with expanding blockchains and protocols, driving ecosystem advancement.",
-    },
-    {
-      icon: <Layers className="h-5 w-5" />,
-      title: "Ecosystem Integration",
-      description: "Works natively with leading wallets and decentralized platforms, enabling frictionless transactions across the digital asset landscape.",
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      title: "Verified Smart Contracts",
-      description: "Independent security audits validate our contract code, ensuring adherence to industry standards and building lasting confidence.",
+      icon: <Shield className="h-5 w-5" />,
+      title: "Built by OpenVector",
+      description: "Created by OpenVector, an R&D studio building hardware & software solutions for the AI & Blockchain ecosystem.",
     },
     {
       icon: <Landmark className="h-5 w-5" />,
       title: "Transparent Reserve Custody",
-      description: "Professional reserve administration with regular third-party verifications ensures full regulatory compliance and asset backing.",
-    },
-    {
-      icon: <RefreshCw className="h-5 w-5" />,
-      title: "Unified Token Supply",
-      description: "Tokens flow freely between networks without supply fragmentation, maintaining complete fiat backing at all times.",
+      description: "Brale provides professional reserve administration with regular third-party verifications ensuring full regulatory compliance and US-regulated backing.",
     },
     {
       icon: <FileCheck className="h-5 w-5" />,
-      title: "Regulatory-Ready Contracts",
-      description: "Smart contracts built to meet evolving compliance frameworks, with automatic updates to satisfy regulatory requirements.",
+      title: "CIP-56 Compliance",
+      description: "Fully compliant with Canton Interoperability Protocol standards, ensuring seamless integration across Canton ecosystem products.",
+    },
+    {
+      icon: <Globe className="h-5 w-5" />,
+      title: "Ecosystem Native Integration",
+      description: "Works seamlessly with existing Canton ecosystem users including Zoro wallet, Trade.Fast, Cypherock and other financial applications.",
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      title: "Security & Audits",
+      description: "Independent security audits validate smart contracts, ensuring adherence to industry standards and building institutional confidence.",
+    },
+    {
+      icon: <RefreshCw className="h-5 w-5" />,
+      title: "Liquidity Provisioning",
+      description: "Designed for easy liquidity provisioning across all OpenVector products, enabling seamless transactions within the ecosystem.",
     },
     {
       icon: <Key className="h-5 w-5" />,
-      title: "Enterprise-Grade Signing",
-      description: "Advanced multi-party computation infrastructure enables high-throughput minting and redemption across multiple networks.",
+      title: "Enterprise-Grade Infrastructure",
+      description: "Advanced multi-party computation enables high-throughput minting and redemption with institutional-grade security.",
     },
     {
       icon: <Sparkles className="h-5 w-5" />,
-      title: "Gasless Transactions",
-      description: "Removes friction by covering network fees through sponsored transactions, simplifying adoption on major blockchain platforms.",
+      title: "Privacy-Preserving Design",
+      description: "Built with privacy considerations for the Canton Network's atomic privacy and instant finality features.",
     },
   ];
 
@@ -463,12 +440,12 @@ function ContactSection() {
                   Get in Touch
                 </span>
                 <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
-                  Ready to integrate<br />with Canton?
+                  Ready to explore<br />CCUSD?
                 </h2>
                 <p className="mb-6 text-slate-400 leading-relaxed">
-                  Connect with our team to explore how CCUSD can power 
-                  your institutional settlement needs with privacy-preserving, 
-                  compliant infrastructure.
+                  Connect with our team to learn how CCUSD can provide 
+                  stable, compliant liquidity for your Canton ecosystem applications 
+                  with institutional-grade infrastructure backed by OpenVector.
                 </p>
                 <div className="flex items-center gap-4 text-sm text-slate-500">
                   <div className="flex items-center gap-2">
@@ -556,7 +533,7 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#0a0b0d]">
       <Navigation />
       <HeroSection />
-      <TrustBar />
+      <OpenVectorSection />
       <ValuePropsSection />
       <WhyChooseSection />
       <ContactSection />
