@@ -57,10 +57,16 @@ function Navigation() {
             Why Choose
           </button>
           <button
-            onClick={() => scrollToSection("about")}
+            onClick={() => scrollToSection("rewards")}
             className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
-            About
+            Rewards
+          </button>
+          <button
+            onClick={() => scrollToSection("bridge")}
+            className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
+          >
+            Liquidity Bridge
           </button>
           <button
             onClick={() => scrollToSection("contact")}
@@ -76,6 +82,13 @@ function Navigation() {
 
 // Hero Section Component
 function HeroSection() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
       {/* Glowing pulse effect behind coin */}
@@ -185,7 +198,8 @@ function HeroSection() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
             size="lg"
-            className="px-10 py-6 text-base bg-white text-[#0a0b0d] font-semibold hover:bg-white/90 transition-all rounded-lg"
+            onClick={() => scrollToSection("contact")}
+            className="px-10 py-6 text-base bg-white text-[#0a0b0d] font-semibold hover:bg-white/90 transition-all rounded-lg cursor-pointer"
           >
             Get Started
           </Button>
@@ -421,8 +435,206 @@ function WhyChooseSection() {
   );
 }
 
+// Rewards Section Component
+function RewardsSection() {
+  const rewards: any[] = [
+    {
+      icon: <Zap className="h-6 w-6" />,
+      platform: "Zoro Wallet",
+      description: "Earn exclusive rewards on CCUSD transactions and holdings",
+    },
+    {
+      icon: <RefreshCw className="h-6 w-6" />,
+      platform: "Trade.Fast AMM",
+      description: "Get enhanced swap rewards and liquidity incentives",
+    },
+    {
+      icon: <Network className="h-6 w-6" />,
+      platform: "Prediction Markets",
+      description: "Participate and earn rewards on prediction activities",
+    },
+  ];
+
+  return (
+    <section id="rewards" className="relative z-10 px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center"
+        >
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            Earn More with CCUSD
+          </h2>
+          <p className="mx-auto max-w-2xl text-slate-400 text-lg">
+            Get additional rewards on usage across Canton ecosystem platforms
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {rewards.map((reward, index) => (
+            <motion.div
+              key={reward.platform}
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 shadow-xl shadow-black/30 backdrop-blur-xl transition-all hover:border-[#00E5FF]/20 hover:bg-white/[0.04]"
+            >
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#00E5FF]/10 text-[#00E5FF] transition-colors group-hover:bg-[#00E5FF]/20">
+                {reward.icon}
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-white">{reward.platform}</h3>
+              <p className="text-slate-400">{reward.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Liquidity Bridge Section Component
+function LiquidityBridgeSection() {
+  return (
+    <section id="bridge" className="relative z-10 px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+          {/* Left side - Content */}
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="mb-6 inline-block rounded-full border border-[#00E5FF]/20 bg-[#00E5FF]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-[#00E5FF] w-fit">
+              Cross-Chain Liquidity
+            </div>
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-5xl">
+              Liquidity Bridge Across Networks
+            </h2>
+            <p className="mb-6 text-lg text-slate-400 leading-relaxed">
+              CCUSD serves as a vital liquidity bridge between multiple blockchains and the Canton network, enabling seamless asset movement and trading across different ecosystems.
+            </p>
+            <div className="space-y-4">
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#00E5FF]/10 text-[#00E5FF]">
+                  <Globe className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Multi-Chain Support</h4>
+                  <p className="text-sm text-slate-400">Seamless transfers between blockchains</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#00E5FF]/10 text-[#00E5FF]">
+                  <Layers className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Canton Integration</h4>
+                  <p className="text-sm text-slate-400">Native support for Canton ecosystem</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#00E5FF]/10 text-[#00E5FF]">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Instant Settlements</h4>
+                  <p className="text-sm text-slate-400">Fast and reliable liquidity provision</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right side - Visual */}
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center justify-center"
+          >
+            <div className="relative h-full w-full rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 shadow-2xl shadow-black/30 backdrop-blur-xl">
+              <div className="flex flex-col items-center justify-center gap-8 py-16">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#00E5FF]/20 text-[#00E5FF]">
+                    <Globe className="h-6 w-6" />
+                  </div>
+                  <p className="font-semibold text-white">Other Blockchains</p>
+                </div>
+                
+                <div className="relative h-12 w-1 bg-gradient-to-b from-[#00E5FF]/60 to-transparent">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="h-3 w-3 rounded-full bg-[#00E5FF]" />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 rounded-lg bg-[#00E5FF]/10 px-6 py-4 border border-[#00E5FF]/30">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#00E5FF]/20 text-[#00E5FF]">
+                    <Zap className="h-6 w-6" />
+                  </div>
+                  <p className="font-bold text-[#00E5FF]">CCUSD Bridge</p>
+                </div>
+
+                <div className="relative h-12 w-1 bg-gradient-to-b from-transparent to-[#00E5FF]/60">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="h-3 w-3 rounded-full bg-[#00E5FF]" />
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#00E5FF]/20 text-[#00E5FF]">
+                    <Network className="h-6 w-6" />
+                  </div>
+                  <p className="font-semibold text-white">Canton Network</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Contact Form Component
 function ContactSection() {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+    const fullName = formData.get("fullName") as string;
+    const company = formData.get("company") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, company, email, message }),
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully! We'll be in touch soon.");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <section id="contact" className="relative z-10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
@@ -472,27 +684,35 @@ function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <form className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <input
                     type="text"
+                    name="fullName"
                     placeholder="Full name"
+                    required
                     className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                   <input
                     type="text"
+                    name="company"
                     placeholder="Company"
+                    required
                     className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                   />
                 </div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Business email"
+                  required
                   className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <textarea
                   placeholder="How can we help you?"
+                  name="message"
                   rows={4}
+                  required
                   className="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all focus:border-[#00E5FF]/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#00E5FF]/20"
                 />
                 <Button
@@ -540,6 +760,8 @@ export default function Home() {
       <OpenVectorSection />
       <ValuePropsSection />
       <WhyChooseSection />
+      <RewardsSection />
+      <LiquidityBridgeSection />
       <ContactSection />
       <Footer />
     </main>
